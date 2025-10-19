@@ -1,0 +1,14 @@
+/Users/mitulgarg/Desktop/Mitul/Projects/Github Projects/HybridCluster_DGX_Spark_Mac_LLM_inference/.venv
+.venv/
+__pycache__/
+/Users/mitulgarg/Desktop/Mitul/Projects/Github Projects/HybridCluster_DGX_Spark_Mac_LLM_inference/Mac_Studio/venv_mac
+/Users/mitulgarg/Desktop/Mitul/Projects/Github Projects/HybridCluster_DGX_Spark_Mac_LLM_inference/DGX_Spark/venv_dgx
+DGX_Spark/venv_dgx
+Mac_Studio/venv_mac
+DGX_Spark/__pycache__
+
+venv_dgx/
+venv_mac/
+*.metallib
+*.dylib
+__pycache__/
