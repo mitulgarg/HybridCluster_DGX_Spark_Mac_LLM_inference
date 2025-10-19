@@ -9,7 +9,9 @@ from transformers import AutoModelForCausalLM, AutoTokenizer
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--dgx", default="http://127.0.0.1:8000")
-parser.add_argument("--model", default="distilgpt2")
+# parser.add_argument("--model", default="distilgpt2")
+parser.add_argument("--model", default="gpt2")
+
 parser.add_argument("--draft_n", type=int, default=4)
 parser.add_argument("--max_tokens", type=int, default=100)
 parser.add_argument("--prompt", type=str, default="Explain quantum entanglement simply.")
@@ -79,7 +81,9 @@ while len(tokens) < MAX_TOKENS:
             input_ids,
             attention_mask=attention_mask,  # Add attention mask
             max_new_tokens=DRAFT_N,
-            do_sample=False,  # GREEDY
+  
+            do_sample=True,  # From False to True
+            top_k=50,
             pad_token_id=tokenizer.eos_token_id,
         )
     

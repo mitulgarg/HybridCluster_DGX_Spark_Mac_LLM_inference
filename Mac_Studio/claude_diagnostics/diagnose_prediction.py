@@ -6,7 +6,9 @@ Diagnostic script to find why draft and verifier predict different tokens
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
-MODEL_NAME = "distilgpt2"
+MODEL_NAME_OLD = "distilgpt2"
+MODEL_NAME = "gpt2"  # Alternative model to test
+
 PROMPT = "Hello please think about what time means and answer"
 
 print(f"Diagnosing prediction mismatch for: {MODEL_NAME}")

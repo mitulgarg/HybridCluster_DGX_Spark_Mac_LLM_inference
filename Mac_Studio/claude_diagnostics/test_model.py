@@ -6,7 +6,9 @@ Test script to verify both draft and verifier models generate the same tokens
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
-MODEL_NAME = "distilgpt2"
+MODEL_NAME_OLD = "distilgpt2"
+MODEL_NAME= "gpt2"  # Alternative model to test
+
 PROMPT = "Hello please think about what time means and answer"
 
 print(f"Testing model: {MODEL_NAME}")
