@@ -12,3 +12,12 @@ venv_mac/
 *.metallib
 *.dylib
 __pycache__/
+
+/Users/mitulgarg/Desktop/Mitul/Projects/Github Projects/HybridCluster_DGX_Spark_Mac_LLM_inference/Mac_Studio/models
+Mac_Studio/models
+
+/Users/mitulgarg/Desktop/Mitul/Projects/Github Projects/HybridCluster_DGX_Spark_Mac_LLM_inference/DGX_Spark/models
+DGX_Spark/models
+Mac_Studio/tinyllama-1.1b-chat-v1.0.Q4_K_M.gguf
+DGX_Spark/tinyllama-1.1b-chat-v1.0.Q8_0.gguf
+
