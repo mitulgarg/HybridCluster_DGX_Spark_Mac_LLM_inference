@@ -2,7 +2,7 @@
 
 This prototype demonstrates speculative decoding across heterogeneous hardware:
 - **DGX/Server (verifier)**: Higher-precision model (Q8_0) for verification
-- **Mac M3 (drafter)**: Lower-precision model (Q4_K_M) for fast draft generation
+- **Mac M3 Ultra  (drafter)**: Lower-precision model (Q4_K_M) for fast draft generation
 
 ## Why This Approach?
 
@@ -12,12 +12,21 @@ This prototype demonstrates speculative decoding across heterogeneous hardware:
 - ❌ Complex KV serialization/deserialization
 - ❌ DGX sits idle during decode phase
 
+Here is a diagram of this "split-pipe" architecture...
+
+![The "split-pipe" architecture](img/Original_Inspiration(10GBE network KV cache stream).png)
+
 **Our approach** (speculative decoding): Both machines work continuously with minimal coordination:
 - ✅ Works on standard network (1GbE/WiFi)
 - ✅ Only 20-50 bytes transferred per iteration (token IDs only)
 - ✅ No KV cache streaming needed
 - ✅ Both machines fully utilized (90%+ utilization)
 - ✅ 2x measured speedup with simple implementation
+
+This new architecture solves the bottleneck...
+
+![Our speculative decoding architecture](img/Hybrid_approach.png)
+
 
 ### Key Insight: KV Cache Doesn't Need to Move
 
@@ -41,7 +50,7 @@ Speculative decoding accelerates LLM inference by:
 
 - **Python**: 3.11+
 - **Hardware**: 
-  - Mac with Apple Silicon (M1/M2/M3) for Metal acceleration
+  - Mac with Apple Silicon (M1/M2/M3/M4) for Metal acceleration
   - Any machine with GPU for the server (or CPU if no GPU available)
 
 ---
@@ -204,7 +213,8 @@ SPECULATIVE DECODING RESULTS
 
 ```
 ┌─────────────────┐                    ┌──────────────────┐
-│   Mac M3 Client │                    │  DGX/Server      │
+│   Mac Ultra M3  |                    |                  |
+|          Client │                    │  DGX/Server      │
 │   (Drafter)     │                    │  (Verifier)      │
 │                 │                    │                  │
 │  Q4_K_M Model   │◄──────────────────►│  Q8_0 Model      │
