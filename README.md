@@ -14,7 +14,7 @@ This prototype demonstrates speculative decoding across heterogeneous hardware:
 
 Here is a diagram of this "split-pipe" architecture...
 
-![The "split-pipe" architecture](img/Original_Inspiration(10GBE network KV cache stream).png)
+![The "split-pipe" architecture](img/Original_Inspiration10GBE_KVcache_stream.png)
 
 **Our approach** (speculative decoding): Both machines work continuously with minimal coordination:
 - ✅ Works on standard network (1GbE/WiFi)
@@ -120,7 +120,7 @@ python3 -m venv venv_mac
 source venv_mac/bin/activate
 
 # Install dependencies with Metal support
-CMAKE_ARGS="-DLLAMA_METAL=on" pip install llama-cpp-python requests numpy
+CMAKE_ARGS="-DLLAMA_METAL=on" pip install -r requirements.txt
 
 # Run the drafter client
 python draft_token_generator.py \
@@ -176,6 +176,8 @@ Iter 2: 12/80 tokens
   Draft tokens: [29871, 13, 29906, 29889, 6781]
   Draft text: ' \n2. Cr'
   ✅ 5/5 accepted: ' \n2. Cr'
+
+Iter 3:...
 
 ============================================================
 SPECULATIVE DECODING RESULTS
@@ -340,7 +342,7 @@ CMAKE_ARGS="-DLLAMA_METAL=on" pip install llama-cpp-python --no-cache-dir
 
 ## Advanced: Using Different Models
 
-### Larger Models (Mistral, Llama 2)
+### Larger Models (Mistral, Llama 2)  - for better spec decoding (you can then remove greedy generation as in current implementation)
 
 ```bash
 # Download Mistral 7B (Q4_K_M for drafter, Q8_0 for server)

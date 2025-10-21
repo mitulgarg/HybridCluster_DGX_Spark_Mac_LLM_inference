@@ -13,7 +13,8 @@ from llama_cpp import Llama
 
 app = FastAPI()
 
-# Load full precision model (Q8_0 = near FP16 quality)
+# Load full precision model (Q8_0 = FP8) / Using FP8 here because this is just a simulation
+
 MODEL_PATH = "models/tinyllama-1.1b-chat-v1.0.Q8_0.gguf"
 llm = Llama(model_path=MODEL_PATH, n_ctx=2048, n_gpu_layers=99, verbose=False, logits_all=True)
 
@@ -53,7 +54,7 @@ def verify(req: VerifyRequest):
     output = llm(
         prompt_text,
         max_tokens=len(draft_tokens),
-        temperature=0.0,  # Greedy
+        temperature=0.0,  # Greedy especially rn sine models are small and may not work well with sampling
         echo=False
     )
     
