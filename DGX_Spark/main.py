@@ -1,6 +1,6 @@
 """
 DGX/Server: Full precision verifier using llama.cpp
-Install: pip install llama-cpp-python fastapi uvicorn
+Install: pip install -r requirements.txt
 Download model: wget https://huggingface.co/TheBloke/TinyLlama-1.1B-Chat-v1.0-GGUF/resolve/main/tinyllama-1.1b-chat-v1.0.Q8_0.gguf
 Run: uvicorn main:app --host 127.0.0.1 --port 8000
 """

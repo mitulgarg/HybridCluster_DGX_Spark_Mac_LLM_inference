@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """
 Mac: 4-bit quantized draft generator using llama.cpp
-Install: CMAKE_ARGS="-DLLAMA_METAL=on" pip install llama-cpp-python requests
+Install: CMAKE_ARGS="-DLLAMA_METAL=on" pip install -r requirements.txt
 Download model: wget https://huggingface.co/TheBloke/TinyLlama-1.1B-Chat-v1.0-GGUF/resolve/main/tinyllama-1.1b-chat-v1.0.Q4_K_M.gguf
-Run: python client.py --dgx http://127.0.0.1:8000 --prompt "Count from 1 to 10"
+Run: python draft_token_generator.py --dgx http://127.0.0.1:8000 --prompt "Count from 1 to 10"
 """
 
 import argparse
