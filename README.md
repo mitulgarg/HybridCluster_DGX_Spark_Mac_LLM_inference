@@ -1,4 +1,4 @@
-# hetero_specdecode - Heterogeneous Speculative Decoding
+# Hybrid Speculative Decoding
 
 This prototype demonstrates speculative decoding across heterogeneous hardware:
 - **DGX/Server (verifier)**: Higher-precision model (Q8_0) for verification
@@ -11,6 +11,7 @@ This prototype demonstrates speculative decoding across heterogeneous hardware:
 - ❌ Streaming 500MB-2GB KV cache per request
 - ❌ Complex KV serialization/deserialization
 - ❌ DGX sits idle during decode phase
+- ✅ 4x mentioned speedup (However, this will be limited to the Mac's bottleneck)
 
 Here is a diagram of this "split-pipe" architecture...
 
@@ -21,7 +22,7 @@ Here is a diagram of this "split-pipe" architecture...
 - ✅ Only 20-50 bytes transferred per iteration (token IDs only)
 - ✅ No KV cache streaming needed
 - ✅ Both machines fully utilized (90%+ utilization)
-- ✅ 2x measured speedup with simple implementation
+- ✅ 2x measured speedup with simple implementation (Will have more potential for larger models to be ran since it is quantized on the mac, but will take up more VRAM on the DGX for sure)
 
 This new architecture solves the bottleneck...
 
