@@ -22,7 +22,13 @@ Here is a diagram of this "split-pipe" architecture...
 - ✅ Only 20-50 bytes transferred per iteration (token IDs only)
 - ✅ No KV cache streaming needed
 - ✅ Both machines fully utilized (90%+ utilization)
-- ✅ 2x measured speedup with simple implementation (Will have more potential for larger models to be ran since it is quantized on the mac, but will take up more VRAM on the DGX for sure)
+- ✅ 2x measured speedup with simple implementation 
+
+Does this approach require more VRAM on the DGX?
+No. Hybrid speculative decoding does not add any VRAM overhead on the DGX.
+The DGX holds the same full-precision model and single KV-cache it would use for normal inference.
+All draft generation and its KV-cache live on the Mac, so the DGX memory footprint remains unchanged. 
+This is a major difference from split-pipeline approaches, which often require additional KV-cache storage and can increase VRAM usage by 500MB–2GB or more.
 
 This new architecture solves the bottleneck...
 
